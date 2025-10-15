@@ -165,6 +165,28 @@ footer {
   margin-bottom: 0;
   color: #333;
   font-size: 15px;
+
+.participants-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: #c00;
+  font-size: 1.1em;
+  margin-left: 0.3em;
+  transition: color 0.2s;
+}
+.delete-icon:hover {
+  color: #f00;
 }
 
 .no-participants {
