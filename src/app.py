@@ -112,13 +112,18 @@ def signup_for_activity(activity_name: str, email: str):
 
 # API endpoint to unregister a participant from an activity
 from fastapi import Request
+from pydantic import BaseModel
+
+class UnregisterRequest(BaseModel):
+    email: str
 
 @app.post("/activities/{activity_name}/unregister")
-def unregister_from_activity(activity_name: str, email: str):
+def unregister_from_activity(activity_name: str, req: UnregisterRequest):
     """Unregister a student from an activity"""
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
     activity = activities[activity_name]
+    email = req.email
     if email not in activity["participants"]:
         raise HTTPException(status_code=400, detail="Student is not registered for this activity")
     activity["participants"].remove(email)
